@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Интерстеллар (2014) - Официальный сайт фильма</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a1a;
+            color: #e0e0ff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background: linear-gradient(rgba(0, 0, 30, 0.9), rgba(0, 0, 20, 0.7)), url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
+            background-size: cover;
+            background-position: center;
+            padding: 40px 0;
+            text-align: center;
+            border-bottom: 2px solid #2a3c6d;
+        }
+        
+        .logo {
+            font-size: 2.8rem;
+            color: #4a6fe3;
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(74, 111, 227, 0.5);
+        }
+        
+        .tagline {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #a0b0ff;
+            margin-bottom: 30px;
+        }
+        
+        /* Navigation */
+        nav {
+            background-color: rgba(10, 15, 40, 0.9);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #2a3c6d;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav li {
+            margin: 0 20px;
+        }
+        
+        nav a {
+            color: #b0c0ff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover {
+            color: #4a6fe3;
+            background-color: rgba(74, 111, 227, 0.1);
+        }
+        
+        /* Main Content */
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 60px 0;
+            gap: 40px;
+        }
+        
+        .poster {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .poster img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+            border: 1px solid #2a3c6d;
+        }
+        
+        .movie-info {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .movie-title {
+            font-size: 2.5rem;
+            color: #4a6fe3;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #2a3c6d;
+            padding-bottom: 10px;
+        }
+        
+        .specs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .spec-item {
+            background-color: rgba(20, 25, 60, 0.5);
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #4a6fe3;
+        }
+        
+        .spec-item h3 {
+            color: #a0b0ff;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .spec-item p {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        .synopsis {
+            margin-bottom: 30px;
+        }
+        
+        .synopsis h2 {
+            color: #4a6fe3;
+            margin-bottom: 15px;
+            font-size: 1.8rem;
+        }
+        
+        .synopsis p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        
+        /* Sections */
+        section {
+            padding: 60px 0;
+            border-top: 1px solid rgba(42, 60, 109, 0.5);
+        }
+        
+        .section-title {
+            color: #4a6fe3;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: #4a6fe3;
+        }
+        
+        /* Cast */
+        .cast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .actor {
+            background-color: rgba(20, 25, 60, 0.5);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            border: 1px solid rgba(42, 60, 109, 0.3);
+        }
+        
+        .actor:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.5);
+        }
+        
+        .actor-img {
+            height: 250px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .actor-info {
+            padding: 20px;
+        }
+        
+        .actor-name {
+            font-size: 1.3rem;
+            color: #4a6fe3;
+            margin-bottom: 5px;
+        }
+        
+        .actor-role {
+            color: #a0b0ff;
+            font-style: italic;
+        }
+        
+        /* Awards */
+        .awards-list {
+            max-width: 800px;
+            margin: 40px auto 0;
+        }
+        
+        .award-item {
+            background-color: rgba(20, 25, 60, 0.5);
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #4a6fe3;
+            display: flex;
+            align-items: center;
+        }
+        
+        .award-icon {
+            font-size: 2rem;
+            color: gold;
+            margin-right: 20px;
+            min-width: 60px;
+            text-align: center;
+        }
+        
+        .award-details h3 {
+            color: #a0b0ff;
+            margin-bottom: 5px;
+        }
+        
+        /* Trailer */
+        .trailer-container {
+            max-width: 800px;
+            margin: 40px auto 0;
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+        }
+        
+        .trailer-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Facts */
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .fact-card {
+            background-color: rgba(20, 25, 60, 0.5);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 4px solid #4a6fe3;
+        }
+        
+        .fact-card i {
+            font-size: 2rem;
+            color: #4a6fe3;
+            margin-bottom: 15px;
+        }
+        
+        .fact-card h3 {
+            color: #a0b0ff;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: rgba(5, 10, 30, 0.95);
+            padding: 40px 0 20px;
+            text-align: center;
+            border-top: 2px solid #2a3c6d;
+            margin-top: 60px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: #a0b0ff;
+            margin: 0 15px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #4a6fe3;
+        }
+        
+        .copyright {
+            color: #6a7bb0;
+            font-size: 0.9rem;
+            margin-top: 20px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav li {
+                margin: 5px 0;
+            }
+            
+            .movie-title {
+                font-size: 2rem;
+            }
+            
+            .specs {
+                grid-template-columns: 1fr;
+            }
+            
+            .cast-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="logo">INTERSTELLAR</div>
+            <div class="tagline">Следующий шаг человечества не будет самым маленьким</div>
+        </div>
+    </header>
+    
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#about">О фильме</a></li>
+                <li><a href="#cast">Актеры</a></li>
+                <li><a href="#awards">Награды</a></li>
+                <li><a href="#trailer">Трейлер</a></li>
+                <li><a href="#facts">Факты</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero" id="about">
+            <div class="poster">
+                <img src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt="Постер фильма Интерстеллар">
+            </div>
+            <div class="movie-info">
+                <h1 class="movie-title">Интерстеллар (2014)</h1>
+                
+                <div class="specs">
+                    <div class="spec-item">
+                        <h3>Режиссер</h3>
+                        <p>Кристофер Нолан</p>
+                    </div>
+                    <div class="spec-item">
+                        <h3>Год выпуска</h3>
+                        <p>2014</p>
+                    </div>
+                    <div class="spec-item">
+                        <h3>Жанр</h3>
+                        <p>Фантастика, драма, приключения</p>
+                    </div>
+                    <div class="spec-item">
+                        <h3>Продолжительность</h3>
+                        <p>169 мин.</p>
+                    </div>
+                    <div class="spec-item">
+                        <h3>Рейтинг IMDb</h3>
+                        <p>8.6/10</p>
+                    </div>
+                    <div class="spec-item">
+                        <h3>Бюджет</h3>
+                        <p>$165 млн</p>
+                    </div>
+                </div>
+                
+                <div class="synopsis">
+                    <h2>Синопсис</h2>
+                    <p>Когда засуха, пыльные бури и вымирание растений приводят человечество к продовольственному кризису, коллектив исследователей и учёных отправляется сквозь червоточину (которая предположительно соединяет области пространства-времени через большое расстояние) в путешествие, чтобы превзойти прежние ограничения для космических путешествий человека и найти планету с подходящими для человечества условиями.</p>
+                    <p>Фильм основан на научных концепциях, включая черные дыры, гравитационные аномалии и теорию относительности. Консультантом фильма выступил известный физик-теоретик Кип Торн.</p>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Cast Section -->
+        <section id="cast">
+            <h2 class="section-title">Актерский состав</h2>
+            <div class="cast-grid">
+                <div class="actor">
+                    <div class="actor-img" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTg2MTM5NjM5M15BMl5BanBnXkFtZTgwMDU2NjQwNjE@._V1_.jpg');"></div>
+                    <div class="actor-info">
+                        <h3 class="actor-name">Мэттью Макконахи</h3>
+                        <p class="actor-role">Джозеф Купер</p>
+                    </div>
+                </div>
+                
+                <div class="actor">
+                    <div class="actor-img" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTY5NjI0MzQwNV5BMl5BanBnXkFtZTcwMTQ2OTkyMw@@._V1_.jpg');"></div>
+                    <div class="actor-info">
+                        <h3 class="actor-name">Энн Хэтэуэй</h3>
+                        <p class="actor-role">Амелия Бренд</p>
+                    </div>
+                </div>
+                
+                <div class="actor">
+                    <div class="actor-img" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTQzNjU3MDc0NF5BMl5BanBnXkFtZTcwNzY5NjExMw@@._V1_.jpg');"></div>
+                    <div class="actor-info">
+                        <h3 class="actor-name">Джессика Честейн</h3>
+                        <p class="actor-role">Мёрф Купер (взрослая)</p>
+                    </div>
+                </div>
+                
+                <div class="actor">
+                    <div class="actor-img" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTU4Mjk5MDExOF5BMl5BanBnXkFtZTcwOTU1NTk4Nw@@._V1_.jpg');"></div>
+                    <div class="actor-info">
+                        <h3 class="actor-name">Майкл Кейн</h3>
+                        <p class="actor-role">Профессор Джон Бренд</p>
+                    </div>
+                </div>
+                
+                <div class="actor">
+                    <div class="actor-img" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTY0NjA0MjY2NV5BMl5BanBnXkFtZTcwNTU4ODkwMw@@._V1_.jpg');"></div>
+                    <div class="actor-info">
+                        <h3 class="actor-name">Маккензи Фой</h3>
+                        <p class="actor-role">Мёрф Купер (10 лет)</p>
+                    </div>
+                </div>
+                
+                <div class="actor">
+                    <div class="actor-img" style="background-image: url('https://m.media-amazon.com/images/M/MV5BMTc2MzA0NDUyMV5BMl5BanBnXkFtZTcwMTc4NTI3Nw@@._V1_.jpg');"></div>
+                    <div class="actor-info">
+                        <h3 class="actor-name">Мэтт Дэймон</h3>
+                        <p class="actor-role">Доктор Манн</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Awards Section -->
+        <section id="awards">
+            <h2 class="section-title">Награды и номинации</h2>
+            <div class="awards-list">
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-trophy"></i>
+                    </div>
+                    <div class="award-details">
+                        <h3>Оскар (2015)</h3>
+                        <p>Лучшие визуальные эффекты (победа)</p>
+                        <p>Лучший звук, лучший звуковой монтаж, лучший оригинальный саундтрек (номинации)</p>
+                    </div>
+                </div>
+                
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <div class="award-details">
+                        <h3>BAFTA (2015)</h3>
+                        <p>Лучшие специальные визуальные эффекты (победа)</p>
+                        <p>Лучший режиссер, лучшая музыка к фильму, лучшая операторская работа (номинации)</p>
+                    </div>
+                </div>
+                
+                <div class="award-item">
+                    <div class="award-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="award-details">
+                        <h3>Сатурн (2015)</h3>
+                        <p>Лучший научно-фантастический фильм (победа)</p>
+                        <p>Лучший режиссер, лучший сценарий, лучшая музыка (номинации)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Trailer Section -->
+       <!-- Полностью замените весь раздел трейлера на этот код -->
+<section id="trailer">
+    <h2 class="section-title">Трейлер фильма</h2>
+    <div class="trailer-container" style="background: url('https://www.youtube.com/watch?v=qcPfI0y7wRUmaxresdefault.jpg') center/cover no-repeat; border-radius: 10px; position: relative;">
+        <a href="https://www.youtube.com/watch?v=qcPfI0y7wRU" target="_blank" style="display: block; width: 100%; height: 100%; position: absolute; top: 0; left: 0;">
+            <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: rgba(0,0,0,0.5);">
+                <div style="text-align: center;">
+                    <div style="background: #ff0000; color: white; width: 80px; height: 80px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; font-size: 2rem;">
+                        <i class="fab fa-youtube"></i>
+                    </div>
+                    <h3 style="color: white; font-size: 1.5rem;">Смотреть трейлер на YouTube</h3>
+                    <p style="color: #ccc;">(Нажмите для просмотра)</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
+        
+        <!-- Facts Section -->
+        <section id="facts">
+            <h2 class="section-title">Интересные факты о фильме</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>Научная точность</h3>
+                    <p>Консультантом фильма выступил известный физик-теоретик Кип Торн, лауреат Нобелевской премии по физике 2017 года. Благодаря его работе визуализация черной дыры Гаргантюа была научно точной.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Продолжительность съемок</h3>
+                    <p>Съемки фильма заняли около 5 месяцев и проходили в различных локациях, включая Исландию, где снимались сцены на ледяной планете.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <i class="fas fa-music"></i>
+                    <h3>Саундтрек</h3>
+                    <p>Музыку к фильму написал Ханс Циммер. Для создания атмосферы он использовал орган, что стало необычным решением для научно-фантастического фильма.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>Настоящая кукуруза</h3>
+                    <p>Для съемок сцен на ферме было посажено 500 акров кукурузы. После окончания съемок кукурузу собрали и продали, что частично окупило расходы на производство.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <i class="fas fa-robot"></i>
+                    <h3>Робот TARS</h3>
+                    <p>Робот TARS в фильме был реальной механической конструкцией, а не полностью компьютерной графикой. Актёр Билл Ирвин управлял им и озвучивал.</p>
+                </div>
+                
+                <div class="fact-card">
+                    <i class="fas fa-book"></i>
+                    <h3>Научные публикации</h3>
+                    <p>На основе визуальных эффектов фильма были опубликованы две научные работы по физике черных дыр и гравитационному линзированию.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="https://www.imdb.com/title/tt0816692/" target="_blank">Страница на IMDb</a>
+                <a href="https://www.warnerbros.com/movies/interstellar" target="_blank">Официальный сайт Warner Bros.</a>
+                <a href="https://www.rottentomatoes.com/m/interstellar_2014" target="_blank">Rotten Tomatoes</a>
+                <a href="https://ru.wikipedia.org/wiki/Интерстеллар" target="_blank">Википедия</a>
+            </div>
+            <p class="copyright">© 2014 Interstellar. Все права защищены. Paramount Pictures, Warner Bros. Pictures, Legendary Pictures.</p>
+            <p class="copyright">Этот сайт создан в образовательных целях и не является официальным ресурсом фильма.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Подсветка текущего раздела при прокрутке
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section, .hero');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let currentSectionId = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSectionId = '#' + section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.style.color = '#b0c0ff';
+                if (link.getAttribute('href') === currentSectionId) {
+                    link.style.color = '#4a6fe3';
+                }
+            });
+        });
+        
+        // Анимация появления элементов при прокрутке
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        // Назначаем анимацию для карточек с актерами и фактами
+        document.querySelectorAll('.actor, .fact-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(el);
+        });
+// Замена для трейлера - динамическая загрузка
+document.addEventListener('DOMContentLoaded', function() {
+    const trailerContainer = document.querySelector('.trailer-container');
+    
+    // Проверяем, если iframe уже есть
+    if (trailerContainer && !trailerContainer.querySelector('iframe')) {
+        // Создаем кнопку для загрузки
+        const loadButton = document.createElement('button');
+        loadButton.innerHTML = '<i class="fas fa-play-circle"></i> Загрузить трейлер';
+        loadButton.style.cssText = `
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 10;
+        `;
+        
+        // Добавляем обработчик для загрузки iframe
+        loadButton.addEventListener('click', function() {
+            const iframe = document.createElement('iframe');
+            iframe.src = 'https://www.youtube-nocookie.com/embed/zSWdZVtXT7E';
+            iframe.title = 'Официальный трейлер фильма Интерстеллар';
+            iframe.style.cssText = 'position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none;';
+            iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+            iframe.allowFullscreen = true;
+            
+            // Заменяем кнопку на iframe
+            trailerContainer.innerHTML = '';
+            trailerContainer.appendChild(iframe);
+            loadButton.remove();
+        });
+        
+        trailerContainer.style.position = 'relative';
+        trailerContainer.appendChild(loadButton);
+    }
+});
+
+    </script>
+</body>
+</html>
