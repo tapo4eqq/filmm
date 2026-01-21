@@ -5,618 +5,534 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Интерстеллар (2014) - Официальный сайт фильма</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
+        /* Основа - темная научная эстетика */
+        :root {
+            --space-black: #000000;
+            --cosmic-dark: #0a0a0f;
+            --deep-space: #0f0f1a;
+            --star-light: #e8e8ff;
+            --accent-blue: #1a5fb4;
+            --accent-gold: #c7a53b;
+            --text-gray: #aaaaaa;
+            --text-light: #d8d8d8;
+            --black-hole-color: #000;
+            --accretion-disk: rgba(74, 111, 227, 0.3);
+        }
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         body {
-            background-color: #0a0a1a;
-            color: #e0e0ff;
+            background-color: var(--space-black);
+            color: var(--text-light);
+            font-family: 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             overflow-x: hidden;
+            font-weight: 300;
+            letter-spacing: 0.3px;
         }
         
-        /* Анимации */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-10px); }
-            100% { transform: translateY(0px); }
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(74, 111, 227, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(74, 111, 227, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(74, 111, 227, 0); }
-        }
-        
-        @keyframes stars {
-            0% { background-position: 0 0; }
-            100% { background-position: 1000px 1000px; }
-        }
-        
-        @keyframes shine {
-            0% { background-position: -100px; }
-            100% { background-position: 200px; }
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Звездный фон */
-        .stars-bg {
+        /* Космический фон с черной дырой */
+        .cosmic-background {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -2;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 40px 70px, #fff, rgba(0,0,0,0)),
-                radial-gradient(3px 3px at 50px 160px, #ddd, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 90px 40px, #fff, rgba(0,0,0,0)),
-                radial-gradient(1px 1px at 130px 80px, #fff, rgba(0,0,0,0)),
-                radial-gradient(2px 2px at 160px 120px, #ddd, rgba(0,0,0,0));
-            background-repeat: repeat;
-            background-size: 200px 200px;
-            animation: stars 200s linear infinite;
+            z-index: -10;
+            background: 
+                radial-gradient(ellipse at 30% 50%, rgba(26, 95, 180, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 50%, rgba(199, 165, 59, 0.03) 0%, transparent 50%),
+                var(--space-black);
         }
         
-        /* Header */
-        header {
-            background: linear-gradient(rgba(0, 0, 30, 0.9), rgba(0, 0, 20, 0.7)), url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80');
-            background-size: cover;
-            background-position: center;
-            padding: 60px 0;
-            text-align: center;
-            border-bottom: 2px solid #2a3c6d;
-            position: relative;
-            overflow: hidden;
-            animation: fadeIn 1.2s ease-out;
+        /* Анимированная черная дыра */
+        .black-hole-background {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            z-index: -9;
+            pointer-events: none;
         }
         
-        header::before {
-            content: '';
+        .black-hole-core {
             position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, var(--black-hole-color) 0%, rgba(0,0,0,0.9) 30%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 0 1px rgba(255, 255, 255, 0.05),
+                inset 0 0 50px rgba(0, 0, 0, 0.9);
+        }
+        
+        .accretion-disk {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotateX(75deg);
+            width: 600px;
+            height: 200px;
+            border-radius: 50%;
+            background: 
+                conic-gradient(
+                    from 0deg,
+                    transparent 0deg,
+                    rgba(255, 215, 0, 0.1) 60deg,
+                    rgba(0, 229, 255, 0.2) 120deg,
+                    rgba(74, 111, 227, 0.3) 180deg,
+                    rgba(74, 30, 110, 0.2) 240deg,
+                    rgba(255, 100, 0, 0.1) 300deg,
+                    transparent 360deg
+                );
+            animation: disk-rotate 40s linear infinite;
+            opacity: 0.4;
+        }
+        
+        .gravitational-lens {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            border-radius: 50%;
+            background: radial-gradient(circle, transparent 40%, rgba(74, 111, 227, 0.05) 60%, transparent 80%);
+            animation: lens-pulse 20s infinite alternate ease-in-out;
+        }
+        
+        .star-field {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(74, 111, 227, 0.1) 50%, transparent 70%);
-            animation: shine 3s infinite linear;
+            z-index: -8;
+            background-image: 
+                radial-gradient(1px 1px at 10% 20%, rgba(255,255,255,0.3) 0%, transparent 100%),
+                radial-gradient(1px 1px at 20% 40%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 30% 60%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 40% 80%, rgba(255,255,255,0.1) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 50% 30%, rgba(255,255,255,0.4) 0%, transparent 100%),
+                radial-gradient(1px 1px at 60% 50%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 70% 70%, rgba(255,255,255,0.2) 0%, transparent 100%),
+                radial-gradient(1px 1px at 80% 90%, rgba(255,255,255,0.1) 0%, transparent 100%),
+                radial-gradient(1.5px 1.5px at 90% 20%, rgba(255,255,255,0.3) 0%, transparent 100%);
+            background-size: 200px 200px;
+            animation: subtleStars 120s linear infinite;
         }
         
-        .logo {
-            font-size: 3.5rem;
-            color: #4a6fe3;
-            margin-bottom: 15px;
-            letter-spacing: 5px;
-            text-shadow: 0 0 20px rgba(74, 111, 227, 0.7), 0 0 40px rgba(74, 111, 227, 0.4);
+        /* Анимации */
+        @keyframes subtleStars {
+            0% { background-position: 0 0; }
+            100% { background-position: 400px 400px; }
+        }
+        
+        @keyframes disk-rotate {
+            0% { transform: translate(-50%, -50%) rotateX(75deg) rotate(0deg); }
+            100% { transform: translate(-50%, -50%) rotateX(75deg) rotate(360deg); }
+        }
+        
+        @keyframes lens-pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+            100% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.3; }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes textGlow {
+            0%, 100% { text-shadow: 0 0 10px rgba(232, 232, 255, 0.1); }
+            50% { text-shadow: 0 0 15px rgba(232, 232, 255, 0.2); }
+        }
+        
+        /* Контейнер */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
             position: relative;
-            animation: float 6s ease-in-out infinite;
         }
         
-        .logo::after {
-            content: '2014';
-            position: absolute;
-            top: -10px;
-            right: -40px;
+        /* Хедер - минималистичный, как вступление к фильму */
+        header {
+            padding: 100px 0 80px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            animation: fadeIn 2s ease-out;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), rgba(0,0,0,0));
+        }
+        
+        .film-title {
+            font-size: 5rem;
+            font-weight: 300;
+            letter-spacing: 10px;
+            color: var(--star-light);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            animation: textGlow 6s infinite;
+            font-family: 'Arial Narrow', sans-serif;
+            position: relative;
+        }
+        
+        .film-year {
             font-size: 1.2rem;
-            color: #a0b0ff;
-            background: rgba(74, 111, 227, 0.2);
-            padding: 5px 10px;
-            border-radius: 20px;
-            animation: pulse 2s infinite;
+            color: var(--accent-gold);
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .film-year::before, .film-year::after {
+            content: '—';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-gray);
+        }
+        
+        .film-year::before {
+            left: -40px;
+        }
+        
+        .film-year::after {
+            right: -40px;
         }
         
         .tagline {
             font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
             font-style: italic;
-            color: #a0b0ff;
-            margin-bottom: 30px;
-            text-shadow: 0 0 10px rgba(160, 176, 255, 0.5);
-            animation: fadeIn 2s ease-out;
+            position: relative;
+            z-index: 1;
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 5px;
         }
         
-        /* Navigation */
+        /* Навигация */
         nav {
-            background-color: rgba(10, 15, 40, 0.95);
-            padding: 15px 0;
+            padding: 25px 0;
             position: sticky;
             top: 0;
             z-index: 100;
-            border-bottom: 1px solid #2a3c6d;
+            background-color: rgba(0, 0, 0, 0.9);
             backdrop-filter: blur(10px);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
-            animation: fadeIn 1.5s ease-out;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
         }
         
-        nav ul {
+        .nav-container {
             display: flex;
-            justify-content: center;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .nav-links {
+            display: flex;
             list-style: none;
-            flex-wrap: wrap;
+            gap: 40px;
         }
         
-        nav li {
-            margin: 0 20px;
-            position: relative;
-        }
-        
-        nav a {
-            color: #b0c0ff;
+        .nav-links a {
+            color: var(--text-gray);
             text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.4s;
-            padding: 8px 15px;
-            border-radius: 8px;
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: all 0.3s;
             position: relative;
-            overflow: hidden;
+            padding: 5px 0;
         }
         
-        nav a::before {
+        .nav-links a::after {
             content: '';
             position: absolute;
             bottom: 0;
             left: 0;
             width: 0;
-            height: 2px;
-            background: #4a6fe3;
-            transition: width 0.4s;
+            height: 1px;
+            background-color: var(--accent-blue);
+            transition: width 0.3s;
         }
         
-        nav a:hover {
-            color: #4a6fe3;
-            background-color: rgba(74, 111, 227, 0.1);
+        .nav-links a:hover {
+            color: var(--star-light);
         }
         
-        nav a:hover::before {
+        .nav-links a:hover::after {
             width: 100%;
         }
         
-        /* Main Content */
-        .hero {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
+        /* Основной контент */
+        main {
             padding: 80px 0;
-            gap: 50px;
-            animation: fadeIn 1.8s ease-out;
         }
         
-        .poster {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
+        .section {
+            margin-bottom: 120px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1s, transform 1s;
             position: relative;
+            z-index: 1;
         }
         
-        .poster::before {
-            content: '';
-            position: absolute;
-            top: -15px;
-            left: -15px;
-            right: -15px;
-            bottom: -15px;
-            background: linear-gradient(45deg, #4a6fe3, #2a3c6d, #4a6fe3);
-            border-radius: 15px;
-            z-index: -1;
-            opacity: 0.5;
-            animation: pulse 3s infinite;
-        }
-        
-        .poster img {
-            width: 100%;
-            max-width: 400px;
-            border-radius: 10px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
-            border: 1px solid #2a3c6d;
-            transition: transform 0.5s, box-shadow 0.5s;
-        }
-        
-        .poster img:hover {
-            transform: scale(1.03);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.9);
-        }
-        
-        .movie-info {
-            flex: 2;
-            min-width: 300px;
-        }
-        
-        .movie-title {
-            font-size: 2.8rem;
-            color: #4a6fe3;
-            margin-bottom: 25px;
-            padding-bottom: 15px;
-            position: relative;
-            text-shadow: 0 0 10px rgba(74, 111, 227, 0.5);
-        }
-        
-        .movie-title::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100px;
-            height: 4px;
-            background: linear-gradient(90deg, #4a6fe3, transparent);
-            border-radius: 2px;
-        }
-        
-        .specs {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        
-        .spec-item {
-            background-color: rgba(20, 25, 60, 0.7);
-            padding: 20px;
-            border-radius: 12px;
-            border-left: 4px solid #4a6fe3;
-            transition: transform 0.3s, background-color 0.3s;
-            backdrop-filter: blur(5px);
-        }
-        
-        .spec-item:hover {
-            transform: translateY(-5px);
-            background-color: rgba(30, 35, 70, 0.8);
-        }
-        
-        .spec-item h3 {
-            color: #a0b0ff;
-            font-size: 0.9rem;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        
-        .spec-item p {
-            font-size: 1.2rem;
-            font-weight: 600;
-        }
-        
-        .synopsis {
-            margin-bottom: 40px;
-            animation: fadeIn 2s ease-out;
-        }
-        
-        .synopsis h2 {
-            color: #4a6fe3;
-            margin-bottom: 20px;
-            font-size: 2rem;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .synopsis h2::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: #4a6fe3;
-        }
-        
-        .synopsis p {
-            font-size: 1.2rem;
-            line-height: 1.8;
-            background: rgba(20, 25, 60, 0.3);
-            padding: 25px;
-            border-radius: 12px;
-            border-left: 3px solid #4a6fe3;
-            transition: transform 0.3s;
-        }
-        
-        .synopsis p:hover {
-            transform: translateX(5px);
-        }
-        
-        /* Sections */
-        section {
-            padding: 80px 0;
-            border-top: 1px solid rgba(42, 60, 109, 0.3);
-            position: relative;
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         
         .section-title {
-            color: #4a6fe3;
-            font-size: 2.5rem;
-            margin-bottom: 50px;
-            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 300;
+            color: var(--star-light);
+            margin-bottom: 60px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
             position: relative;
-            text-shadow: 0 0 15px rgba(74, 111, 227, 0.5);
+            padding-bottom: 20px;
         }
         
         .section-title::after {
             content: '';
             position: absolute;
-            bottom: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 150px;
-            height: 4px;
-            background: linear-gradient(90deg, transparent, #4a6fe3, transparent);
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 1px;
+            background-color: var(--accent-blue);
         }
         
-        /* Cast */
-        .cast-container {
-            display: flex;
-            flex-direction: column;
-            gap: 50px;
-        }
-        
-        .cast-controls {
-            background-color: rgba(20, 25, 60, 0.7);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px dashed #4a6fe3;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            animation: fadeIn 1.5s ease-out;
-        }
-        
-        .cast-controls h3 {
-            color: #4a6fe3;
-            margin-bottom: 25px;
-            font-size: 1.6rem;
-            text-align: center;
-        }
-        
-        .image-upload-container {
+        /* Постер и информация о фильме */
+        .film-poster-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 25px;
+            grid-template-columns: 1fr 2fr;
+            gap: 60px;
+            align-items: start;
         }
         
-        .image-upload-box {
+        .poster-wrapper {
             position: relative;
         }
         
-        .image-upload-box label {
-            display: block;
-            margin-bottom: 10px;
-            color: #a0b0ff;
-            font-weight: 600;
-            font-size: 1.1rem;
-        }
-        
-        .image-input {
+        .film-poster {
             width: 100%;
-            padding: 15px;
-            background-color: rgba(10, 15, 30, 0.8);
-            border: 1px solid #2a3c6d;
-            border-radius: 8px;
-            color: white;
-            font-size: 1rem;
-            transition: all 0.3s;
+            border-radius: 2px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.5s;
         }
         
-        .image-input:focus {
-            outline: none;
-            border-color: #4a6fe3;
-            box-shadow: 0 0 10px rgba(74, 111, 227, 0.5);
+        .poster-wrapper:hover .film-poster {
+            transform: scale(1.03);
         }
         
-        .cast-actions {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        
-        .btn {
-            padding: 15px 30px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.4s;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 0;
-            height: 0;
-            border-radius: 50%;
-            background-color: rgba(255, 255, 255, 0.1);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-        
-        .btn:hover::before {
-            width: 300px;
-            height: 300px;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #4a6fe3, #3a5fd3);
-            color: white;
-            box-shadow: 0 5px 15px rgba(74, 111, 227, 0.4);
-        }
-        
-        .btn-primary:hover {
-            background: linear-gradient(135deg, #3a5fd3, #2a4fc3);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(74, 111, 227, 0.6);
-        }
-        
-        .btn-secondary {
-            background-color: rgba(74, 111, 227, 0.1);
-            color: #4a6fe3;
-            border: 2px solid #4a6fe3;
-        }
-        
-        .btn-secondary:hover {
-            background-color: rgba(74, 111, 227, 0.2);
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(74, 111, 227, 0.3);
-        }
-        
-        .cast-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 35px;
-        }
-        
-        .actor {
-            background-color: rgba(20, 25, 60, 0.7);
-            border-radius: 15px;
-            overflow: hidden;
-            transition: all 0.5s;
-            border: 1px solid rgba(42, 60, 109, 0.3);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            backdrop-filter: blur(5px);
-        }
-        
-        .actor:hover {
-            transform: translateY(-15px) scale(1.03);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-            border-color: #4a6fe3;
-        }
-        
-        .actor-img-container {
-            height: 300px;
-            width: 100%;
-            overflow: hidden;
-            position: relative;
-        }
-        
-        .actor-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.7s;
-            background-color: #1a1f3f;
-            background-image: linear-gradient(45deg, #2a3c6d 25%, transparent 25%, transparent 75%, #2a3c6d 75%, #2a3c6d),
-                              linear-gradient(45deg, #2a3c6d 25%, transparent 25%, transparent 75%, #2a3c6d 75%, #2a3c6d);
-            background-size: 20px 20px;
-            background-position: 0 0, 10px 10px;
-        }
-        
-        .actor:hover .actor-img {
-            transform: scale(1.1);
-        }
-        
-        .actor-info {
-            padding: 25px;
-            position: relative;
-        }
-        
-        .actor-info::before {
-            content: '';
+        .poster-overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, #4a6fe3, transparent);
+            height: 100%;
+            background: linear-gradient(to bottom, transparent 70%, rgba(0, 0, 0, 0.7));
+            pointer-events: none;
         }
         
-        .actor-name {
-            font-size: 1.5rem;
-            color: #4a6fe3;
+        .film-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .detail-item {
+            padding: 20px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .detail-label {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 8px;
-            text-shadow: 0 0 5px rgba(74, 111, 227, 0.3);
         }
         
-        .actor-role {
-            color: #a0b0ff;
-            font-style: italic;
+        .detail-value {
+            font-size: 1.2rem;
+            color: var(--star-light);
+        }
+        
+        .synopsis {
             font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-top: 40px;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(15, 15, 26, 0.3);
+            padding: 30px;
+            border-radius: 5px;
         }
         
-        /* Awards */
-        .awards-list {
-            max-width: 900px;
-            margin: 50px auto 0;
+        /* Актерский состав */
+        .cast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
         }
         
-        .award-item {
-            background-color: rgba(20, 25, 60, 0.7);
-            margin-bottom: 25px;
+        .cast-member {
+            background-color: rgba(15, 15, 26, 0.7);
+            border-radius: 2px;
+            overflow: hidden;
+            transition: transform 0.4s, box-shadow 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .cast-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            border-color: rgba(74, 111, 227, 0.3);
+        }
+        
+        .cast-photo {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.4s;
+        }
+        
+        .cast-member:hover .cast-photo {
+            filter: grayscale(0%);
+        }
+        
+        .cast-info {
             padding: 25px;
-            border-radius: 12px;
-            border-left: 5px solid gold;
-            display: flex;
-            align-items: center;
-            transition: transform 0.4s;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         
-        .award-item:hover {
+        .cast-name {
+            font-size: 1.3rem;
+            color: var(--star-light);
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        
+        .cast-role {
+            font-size: 1rem;
+            color: var(--accent-gold);
+            font-style: italic;
+        }
+        
+        /* Научные концепции */
+        .concepts-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+        
+        .concept-card {
+            padding: 40px;
+            background-color: rgba(15, 15, 26, 0.7);
+            border-radius: 2px;
+            border-left: 3px solid var(--accent-blue);
+            transition: all 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        .concept-card:hover {
+            background-color: rgba(15, 15, 26, 0.9);
             transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
-        .award-icon {
+        .concept-icon {
             font-size: 2.5rem;
-            color: gold;
-            margin-right: 25px;
-            min-width: 70px;
-            text-align: center;
-            animation: float 4s ease-in-out infinite;
+            color: var(--accent-blue);
+            margin-bottom: 25px;
         }
         
-        .award-details h3 {
-            color: #a0b0ff;
-            margin-bottom: 10px;
+        .concept-title {
             font-size: 1.5rem;
+            color: var(--star-light);
+            margin-bottom: 20px;
+            font-weight: 400;
         }
         
-        .award-details p {
-            font-size: 1.1rem;
+        .concept-description {
+            color: var(--text-light);
             line-height: 1.7;
         }
         
-        /* Trailer - Встроенный VK Video проигрыватель */
-        .trailer-section {
-            padding: 80px 0;
+        /* Цитаты */
+        .quotes-container {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .trailer-container {
-            max-width: 900px;
-            margin: 40px auto 0;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+        .quote {
+            padding: 50px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
             position: relative;
-            animation: fadeIn 2s ease-out;
+        }
+        
+        .quote-text {
+            font-size: 1.4rem;
+            line-height: 1.8;
+            color: var(--star-light);
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .quote-author {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+        
+        .quote::before {
+            content: '"';
+            position: absolute;
+            top: 30px;
+            left: -20px;
+            font-size: 4rem;
+            color: rgba(255, 255, 255, 0.05);
+            font-family: serif;
+        }
+        
+        /* Трейлер с VK Video */
+        .trailer-section {
+            position: relative;
         }
         
         .vk-video-container {
             position: relative;
-            padding-bottom: 56.25%; /* 16:9 соотношение сторон */
-            height: 0;
-            overflow: hidden;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 соотношение */
             background: #000;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
         }
         
         .vk-video-container iframe {
@@ -629,903 +545,680 @@
         }
         
         .video-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
-            padding-bottom: 56.25%;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://img1.akspic.ru/attachments/crops/6/2/7/5/6/165726/165726-svet-tumannost-zvezda-kosmicheskoe_prostranstvo-nebo-3840x2160.jpg');
+            height: 100%;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-4.0.3&auto=format&fit=crop&w=1471&q=80');
             background-size: cover;
             background-position: center;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            position: relative;
             cursor: pointer;
+            transition: opacity 0.5s;
         }
         
-        .video-placeholder-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            width: 100%;
-            padding: 20px;
+        .video-placeholder.hidden {
+            opacity: 0;
+            pointer-events: none;
         }
         
-        .video-placeholder h3 {
-            color: white;
-            font-size: 2rem;
-            margin-bottom: 20px;
-            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
-        }
-        
-        .play-btn {
+        .play-button {
             width: 100px;
             height: 100px;
-            background: rgba(0, 119, 255, 0.8);
+            background: rgba(26, 95, 180, 0.8);
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             font-size: 3rem;
             color: white;
-            transition: all 0.4s;
+            margin-bottom: 30px;
+            transition: all 0.3s;
+            box-shadow: 0 0 0 0 rgba(26, 95, 180, 0.7);
             animation: pulse 2s infinite;
-            margin: 0 auto 20px;
         }
         
-        .play-btn:hover {
+        .play-button:hover {
             transform: scale(1.1);
-            background: rgba(0, 119, 255, 1);
+            background: rgba(26, 95, 180, 1);
         }
         
-        .video-info {
-            margin-top: 20px;
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(26, 95, 180, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 20px rgba(26, 95, 180, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(26, 95, 180, 0);
+            }
+        }
+        
+        .video-placeholder h3 {
+            color: white;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
             text-align: center;
-            color: #a0b0ff;
+        }
+        
+        .video-placeholder p {
+            color: var(--text-gray);
             font-size: 1.1rem;
-        }
-        
-        /* Facts */
-        .facts-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 30px;
-            margin-top: 50px;
-        }
-        
-        .fact-card {
-            background-color: rgba(20, 25, 60, 0.7);
-            padding: 30px;
-            border-radius: 15px;
-            border-top: 5px solid #4a6fe3;
-            transition: all 0.5s;
-            backdrop-filter: blur(5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .fact-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: #4a6fe3;
-            transform: scaleY(0);
-            transition: transform 0.5s;
-        }
-        
-        .fact-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-        }
-        
-        .fact-card:hover::before {
-            transform: scaleY(1);
-        }
-        
-        .fact-card i {
-            font-size: 2.5rem;
-            color: #4a6fe3;
-            margin-bottom: 20px;
-            display: inline-block;
-        }
-        
-        .fact-card h3 {
-            color: #a0b0ff;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-        
-        .fact-card p {
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-        
-        /* Footer */
-        footer {
-            background-color: rgba(5, 10, 30, 0.95);
-            padding: 60px 0 30px;
             text-align: center;
-            border-top: 2px solid #2a3c6d;
-            margin-top: 80px;
-            position: relative;
-            overflow: hidden;
+            max-width: 500px;
         }
         
-        footer::before {
-            content: '';
+        .vk-loading {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
-            height: 5px;
-            background: linear-gradient(90deg, #4a6fe3, #2a3c6d, #4a6fe3);
-        }
-        
-        .footer-links {
+            height: 100%;
+            background: #000;
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            margin-bottom: 40px;
-        }
-        
-        .footer-links a {
-            color: #a0b0ff;
-            margin: 0 20px;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-size: 1.1rem;
-            position: relative;
-            padding: 5px 0;
-        }
-        
-        .footer-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #4a6fe3;
-            transition: width 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #4a6fe3;
-        }
-        
-        .footer-links a:hover::after {
-            width: 100%;
-        }
-        
-        .copyright {
-            color: #6a7bb0;
-            font-size: 1rem;
-            margin-top: 30px;
-        }
-        
-        /* Всплывающее уведомление */
-        .notification {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #4a6fe3;
+            align-items: center;
             color: white;
-            padding: 15px 25px;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            transform: translateY(100px);
+            font-size: 1.2rem;
+            z-index: 2;
             opacity: 0;
-            transition: transform 0.5s, opacity 0.5s;
+            transition: opacity 0.3s;
         }
         
-        .notification.show {
-            transform: translateY(0);
+        .vk-loading.active {
             opacity: 1;
         }
         
-        /* Responsive */
-        @media (max-width: 992px) {
-            .logo {
-                font-size: 2.8rem;
+        /* Футер */
+        footer {
+            padding: 80px 0 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            background-color: rgba(0, 0, 0, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1rem;
+            color: var(--star-light);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 400;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--star-light);
+        }
+        
+        .copyright {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.8rem;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 1024px) {
+            .film-poster-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
             
-            .movie-title {
-                font-size: 2.3rem;
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
             }
             
-            .section-title {
-                font-size: 2.2rem;
+            .black-hole-background {
+                width: 600px;
+                height: 600px;
             }
             
-            .video-placeholder h3 {
-                font-size: 1.7rem;
+            .accretion-disk {
+                width: 400px;
+                height: 150px;
             }
         }
         
         @media (max-width: 768px) {
-            nav ul {
-                flex-direction: column;
-                align-items: center;
+            .film-title {
+                font-size: 3rem;
+                letter-spacing: 5px;
             }
             
-            nav li {
-                margin: 8px 0;
+            .nav-links {
+                gap: 20px;
             }
             
-            .logo {
-                font-size: 2.2rem;
-                letter-spacing: 3px;
-            }
-            
-            .movie-title {
-                font-size: 2rem;
-            }
-            
-            .specs {
+            .film-details {
                 grid-template-columns: 1fr;
             }
             
-            .cast-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            .concepts-container {
+                grid-template-columns: 1fr;
             }
             
-            .image-upload-box {
-                min-width: 100%;
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
             }
             
-            .video-placeholder h3 {
-                font-size: 1.5rem;
+            .black-hole-background {
+                width: 400px;
+                height: 400px;
+                opacity: 0.5;
             }
             
-            .play-btn {
-                width: 80px;
-                height: 80px;
-                font-size: 2.5rem;
+            .accretion-disk {
+                width: 300px;
+                height: 100px;
             }
         }
         
         @media (max-width: 480px) {
-            .logo {
-                font-size: 1.8rem;
+            .container {
+                padding: 0 20px;
+            }
+            
+            .film-title {
+                font-size: 2.5rem;
+                letter-spacing: 3px;
             }
             
             .tagline {
                 font-size: 1.1rem;
             }
             
-            .btn {
-                padding: 12px 20px;
-                font-size: 1rem;
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
             }
             
-            .video-placeholder h3 {
-                font-size: 1.3rem;
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
-            .play-btn {
-                width: 70px;
-                height: 70px;
-                font-size: 2rem;
+            .play-button {
+                width: 80px;
+                height: 80px;
+                font-size: 2.5rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Звездный фон -->
-    <div class="stars-bg"></div>
+    <!-- Космический фон с черной дырой -->
+    <div class="cosmic-background"></div>
+    <div class="black-hole-background">
+        <div class="black-hole-core"></div>
+        <div class="accretion-disk"></div>
+        <div class="gravitational-lens"></div>
+    </div>
+    <div class="star-field"></div>
     
-    <!-- Header -->
+    <!-- Хедер -->
     <header>
         <div class="container">
-            <div class="logo">INTERSTELLAR</div>
-            <div class="tagline">Следующий шаг человечества не будет самым маленьким</div>
+            <h1 class="film-title">ИНТЕРСТЕЛЛАР</h1>
+            <div class="film-year">2014</div>
+            <p class="tagline">Человечество родилось на Земле, но не было предназначено умереть здесь</p>
         </div>
     </header>
     
-    <!-- Navigation -->
+    <!-- Навигация -->
     <nav>
-        <div class="container">
-            <ul>
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <span style="color: var(--star-light); letter-spacing: 2px;">ИНТЕРСТЕЛЛАР</span>
+            </div>
+            <ul class="nav-links">
                 <li><a href="#about">О фильме</a></li>
                 <li><a href="#cast">Актеры</a></li>
-                <li><a href="#awards">Награды</a></li>
+                <li><a href="#science">Наука</a></li>
+                <li><a href="#quotes">Цитаты</a></li>
                 <li><a href="#trailer">Трейлер</a></li>
-                <li><a href="#facts">Факты</a></li>
             </ul>
         </div>
     </nav>
     
-    <!-- Main Content -->
-    <div class="container">
-        <!-- Hero Section -->
-        <section class="hero" id="about">
-            <div class="poster">
-                <img src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt="Постер фильма Интерстеллар">
-            </div>
-            <div class="movie-info">
-                <h1 class="movie-title">Интерстеллар (2014)</h1>
-                
-                <div class="specs">
-                    <div class="spec-item">
-                        <h3>Режиссер</h3>
-                        <p>Кристофер Нолан</p>
-                    </div>
-                    <div class="spec-item">
-                        <h3>Год выпуска</h3>
-                        <p>2014</p>
-                    </div>
-                    <div class="spec-item">
-                        <h3>Жанр</h3>
-                        <p>Фантастика, драма, приключения</p>
-                    </div>
-                    <div class="spec-item">
-                        <h3>Продолжительность</h3>
-                        <p>169 мин.</p>
-                    </div>
-                    <div class="spec-item">
-                        <h3>Рейтинг IMDb</h3>
-                        <p>8.6/10</p>
-                    </div>
-                    <div class="spec-item">
-                        <h3>Бюджет</h3>
-                        <p>$165 млн</p>
-                    </div>
+    <!-- Основное содержимое -->
+    <main class="container">
+        <!-- О фильме -->
+        <section id="about" class="section">
+            <h2 class="section-title">О фильме</h2>
+            <div class="film-poster-container">
+                <div class="poster-wrapper">
+                    <img src="https://m.media-amazon.com/images/M/MV5BZjdkOTU3MDktN2IxOS00OGEyLWFmMjktY2FiMmZkNWIyODZiXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_FMjpg_UX1000_.jpg" alt="Постер Интерстеллар" class="film-poster">
+                    <div class="poster-overlay"></div>
                 </div>
-                
-                <div class="synopsis">
-                    <h2>Синопсис</h2>
-                    <p>Когда засуха, пыльные бури и вымирание растений приводят человечество к продовольственному кризису, коллектив исследователей и учёных отправляется сквозь червоточину (которая предположительно соединяет области пространства-времени через большое расстояние) в путешествие, чтобы превзойти прежние ограничения для космических путешествий человека и найти планету с подходящими для человечества условиями.</p>
-                    <p>Фильм основан на научных концепциях, включая черные дыры, гравитационные аномалии и теорию относительности. Консультантом фильма выступил известный физик-теоретик Кип Торн.</p>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Cast Section -->
-        <section id="cast">
-            <h2 class="section-title">Актерский состав</h2>
-            
-            <div class="cast-container">
-                <!-- Панель управления для загрузки изображений -->
-                <div class="cast-controls">
-                    <h3>Добавить/Изменить фото актера</h3>
-                    <div class="image-upload-container">
-                        <div class="image-upload-box">
-                            <label for="actor-name">Имя актера:</label>
-                            <input type="text" id="actor-name" class="image-input" placeholder="Например: Мэттью Макконахи">
+                <div class="film-info">
+                    <div class="film-details">
+                        <div class="detail-item">
+                            <div class="detail-label">Режиссер</div>
+                            <div class="detail-value">Кристофер Нолан</div>
                         </div>
-                        <div class="image-upload-box">
-                            <label for="actor-role">Роль:</label>
-                            <input type="text" id="actor-role" class="image-input" placeholder="Например: Джозеф Купер">
+                        <div class="detail-item">
+                            <div class="detail-label">Дата выхода</div>
+                            <div class="detail-value">7 ноября 2014</div>
                         </div>
-                        <div class="image-upload-box">
-                            <label for="image-url">URL изображения:</label>
-                            <input type="text" id="image-url" class="image-input" placeholder="https://example.com/photo.jpg">
+                        <div class="detail-item">
+                            <div class="detail-label">Продолжительность</div>
+                            <div class="detail-value">169 минут</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Бюджет</div>
+                            <div class="detail-value">$165 миллионов</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Сборы</div>
+                            <div class="detail-value">$701.8 миллионов</div>
+                        </div>
+                        <div class="detail-item">
+                            <div class="detail-label">Рейтинг IMDb</div>
+                            <div class="detail-value">8.6/10</div>
                         </div>
                     </div>
-                    <div class="cast-actions">
-                        <button class="btn btn-primary" id="add-actor">
-                            <i class="fas fa-plus"></i> Добавить актера
-                        </button>
-                        <button class="btn btn-secondary" id="load-default">
-                            <i class="fas fa-redo"></i> Загрузить стандартные фото
-                        </button>
-                        <button class="btn btn-secondary" id="clear-all">
-                            <i class="fas fa-trash"></i> Удалить всех
-                        </button>
-                    </div>
-                    <p style="margin-top: 15px; color: #a0b0ff; font-size: 0.9rem; text-align: center;">
-                        <i class="fas fa-info-circle"></i> Вставьте ссылку на изображение актера или используйте стандартные
-                    </p>
-                </div>
-                
-                <!-- Сетка актеров -->
-                <div class="cast-grid" id="actors-grid">
-                    <!-- Актеры будут загружены здесь через JavaScript -->
-                </div>
-            </div>
-        </section>
-        
-        <!-- Awards Section -->
-        <section id="awards">
-            <h2 class="section-title">Награды и номинации</h2>
-            <div class="awards-list">
-                <div class="award-item">
-                    <div class="award-icon">
-                        <i class="fas fa-trophy"></i>
-                    </div>
-                    <div class="award-details">
-                        <h3>Оскар (2015)</h3>
-                        <p>Лучшие визуальные эффекты (победа)</p>
-                        <p>Лучший звук, лучший звуковой монтаж, лучший оригинальный саундтрек (номинации)</p>
-                    </div>
-                </div>
-                
-                <div class="award-item">
-                    <div class="award-icon">
-                        <i class="fas fa-award"></i>
-                    </div>
-                    <div class="award-details">
-                        <h3>BAFTA (2015)</h3>
-                        <p>Лучшие специальные визуальные эффекты (победа)</p>
-                        <p>Лучший режиссер, лучшая музыка к фильму, лучшая операторская работа (номинации)</p>
-                    </div>
-                </div>
-                
-                <div class="award-item">
-                    <div class="award-icon">
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <div class="award-details">
-                        <h3>Сатурн (2015)</h3>
-                        <p>Лучший научно-фантастический фильм (победа)</p>
-                        <p>Лучший режиссер, лучший сценарий, лучшая музыка (номинации)</p>
+                    
+                    <div class="synopsis">
+                        <p>В будущем Земли глобальный неурожай и новые пыльные бури медленно делают планету непригодной для жизни. Профессор Бренд, блестящий физик НАСА, работает над планами по спасению человечества, транспортируя население Земли в новый дом через червоточину.</p>
+                        
+                        <p>Но сначала Бренд должен отправить бывшего пилота НАСА Купера и команду исследователей через червоточину и через галактику, чтобы выяснить, какая из трех планет может стать новым домом для человечества. Это путешествие проверяет пределы человеческой выносливости и исследует границы любви, времени и теории относительности.</p>
                     </div>
                 </div>
             </div>
         </section>
         
-        <!-- Trailer Section с VK Video -->
-        <section class="trailer-section" id="trailer">
-            <h2 class="section-title">Трейлер фильма</h2>
-            <div class="trailer-container">
-                <!-- Контейнер для VK Video -->
-                <div class="vk-video-container" id="vk-video-container" style="display: none;">
-                    <iframe id="vk-video-frame" src="" frameborder="0" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowfullscreen></iframe>
+        <!-- Актерский состав -->
+       <section id="cast" class="section">
+            <h2 class="section-title">Cast</h2>
+            <div class="cast-grid">
+                <div class="cast-member">
+                    <img src="https://uznayvse.ru/images/catalog/2022/3/matthew-mcconaughey_20.jpg" alt="Matthew McConaughey" class="cast-photo">
+                    <div class="cast-info">
+                        <h3 class="cast-name">Matthew McConaughey</h3>
+                        <p class="cast-role">Joseph "Cooper" Cooper</p>
+                    </div>
                 </div>
                 
-                <!-- Заглушка с кнопкой воспроизведения -->
-                <div class="video-placeholder" id="video-placeholder">
-                    <div class="video-placeholder-content">
-                        <div class="play-btn">
-                            <i class="fas fa-play"></i>
-                        </div>
-                        <h3>Посмотрите официальный трейлер</h3>
-                        <div class="video-info">
-                            <p>Нажмите для воспроизведения</p>
-                            <p style="font-size: 0.9rem; margin-top: 10px; color: #8a9bff;">Трейлер загружается через VK Video</p>
-                        </div>
+                <div class="cast-member">
+                    <img src="https://www.film.ru/sites/default/files/people/1455918-2124741.jpg" alt="Anne Hathaway" class="cast-photo">
+                    <div class="cast-info">
+                        <h3 class="cast-name">Anne Hathaway</h3>
+                        <p class="cast-role">Dr. Amelia Brand</p>
+                    </div>
+                </div>
+                
+                <div class="cast-member">
+                    <img src="https://uznayvse.ru/images/catalog/2022/3/michael-caine_53.jpg" alt="Michael Caine" class="cast-photo">
+                    <div class="cast-info">
+                        <h3 class="cast-name">Michael Caine</h3>
+                        <p class="cast-role">Professor John Brand</p>
+                    </div>
+                </div>
+                
+                <div class="cast-member">
+                    <img src="https://24smi.org/public/media/290x360/celebrity/2024/03/25/bobypehr8zd9-dzhessika-chestejn.jpg" alt="Jessica Chastain" class="cast-photo">
+                    <div class="cast-info">
+                        <h3 class="cast-name">Jessica Chastain</h3>
+                        <p class="cast-role">Murph Cooper (adult)</p>
                     </div>
                 </div>
             </div>
-            
-            <div style="text-align: center; margin-top: 20px;">
-                <p style="color: #a0b0ff;">Если видео не загружается, попробуйте <button id="reload-video" style="background: none; border: none; color: #4a6fe3; text-decoration: underline; cursor: pointer; font-size: 1rem;">перезагрузить плеер</button></p>
+        </section>
+        
+        <!-- Научные концепции -->
+        <section id="science" class="section">
+            <h2 class="section-title">Научные концепции</h2>
+            <div class="concepts-container">
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <h3 class="concept-title">Замедление времени</h3>
+                    <p class="concept-description">Возле массивных объектов, таких как черные дыры, время течет медленнее относительно удаленных наблюдателей. В фильме один час на планете Миллер равен семи годам на Земле.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-compress-alt"></i>
+                    </div>
+                    <h3 class="concept-title">Червоточины</h3>
+                    <p class="concept-description">Теоретические проходы через пространство-время, которые могут создавать короткие пути для длительных путешествий по вселенной. Червоточина в фильме возле Сатурна основана на теории моста Эйнштейна-Розена.</p>
+                </div>
+                
+                <div class="concept-card">
+                    <div class="concept-icon">
+                        <i class="fas fa-infinity"></i>
+                    </div>
+                    <h3 class="concept-title">Пятое измерение</h3>
+                    <p class="concept-description">Сцена с тессерактом визуализирует время как физическое измерение, по которому можно перемещаться, позволяя Куперу общаться через время со своей дочерью Мёрф.</p>
+                </div>
             </div>
         </section>
         
-        <!-- Facts Section -->
-        <section id="facts">
-            <h2 class="section-title">Интересные факты о фильме</h2>
-            <div class="facts-grid">
-                <div class="fact-card">
-                    <i class="fas fa-brain"></i>
-                    <h3>Научная точность</h3>
-                    <p>Консультантом фильма выступил известный физик-теоретик Кип Торн, лауреат Нобелевской премии по физике 2017 года. Благодаря его работе визуализация черной дыры Гаргантюа была научно точной.</p>
+        <!-- Цитаты -->
+        <section id="quotes" class="section">
+            <h2 class="section-title">Запоминающиеся цитаты</h2>
+            <div class="quotes-container">
+                <div class="quote">
+                    <p class="quote-text">Мы смотрели на небо и задумывались о нашем месте среди звезд. Теперь мы просто смотрим вниз и беспокоимся о нашем месте в грязи.</p>
+                    <p class="quote-author">— Купер</p>
                 </div>
                 
-                <div class="fact-card">
-                    <i class="fas fa-clock"></i>
-                    <h3>Продолжительность съемок</h3>
-                    <p>Съемки фильма заняли около 5 месяцев и проходили в различных локациях, включая Исландию, где снимались сцены на ледяной планете.</p>
+                <div class="quote">
+                    <p class="quote-text">Любовь — это единственное, что мы способны воспринимать, что выходит за пределы измерений времени и пространства.</p>
+                    <p class="quote-author">— Доктор Амелия Бренд</p>
                 </div>
                 
-                <div class="fact-card">
-                    <i class="fas fa-music"></i>
-                    <h3>Саундтрек</h3>
-                    <p>Музыку к фильму написал Ханс Циммер. Для создания атмосферы он использовал орган, что стало необычным решением для научно-фантастического фильма.</p>
-                </div>
-                
-                <div class="fact-card">
-                    <i class="fas fa-seedling"></i>
-                    <h3>Настоящая кукуруза</h3>
-                    <p>Для съемок сцен на ферме было посажено 500 акров кукурузы. После окончания съемок кукурузу собрали и продали, что частично окупило расходы на производство.</p>
-                </div>
-                
-                <div class="fact-card">
-                    <i class="fas fa-robot"></i>
-                    <h3>Робот TARS</h3>
-                    <p>Робот TARS в фильме был реальной механической конструкцией, а не полностью компьютерной графикой. Актёр Билл Ирвин управлял им и озвучивал.</p>
-                </div>
-                
-                <div class="fact-card">
-                    <i class="fas fa-book"></i>
-                    <h3>Научные публикации</h3>
-                    <p>На основе визуальных эффектов фильма были опубликованы две научные работы по физике черных дыр и гравитационному линзированию.</p>
+                <div class="quote">
+                    <p class="quote-text">Не уходи смиренно во тьму ночную. Пусть в ярости седой закат горит. Бушуй, бушуй, когда померкнет свет дневной.</p>
+                    <p class="quote-author">— Дилан Томас, цитируется профессором Брендом</p>
                 </div>
             </div>
         </section>
+        
+       
+  <!-- Трейлер с VK Video -->
+<section id="trailer" class="section">
+    <h2 class="section-title">Официальный трейлер</h2>
+    
+    <div class="trailer-container">
+        <div class="vk-video-container">
+            <!-- Используем embed-ссылку VK -->
+            <iframe src="https://vk.com/video_ext.php?oid=-36455846&id=456241407&hd=2" 
+                    width="100%" 
+                    height="100%" 
+                    frameborder="0" 
+                    allowfullscreen
+                    allow="autoplay; encrypted-media; fullscreen">
+            </iframe>
+        </div>
     </div>
     
-    <!-- Footer -->
+    <div style="text-align: center; margin-top: 20px; color: var(--text-gray);">
+        <p>Если видео не загружается, <a href="https://vk.com/video-36455846_456241407" target="_blank" style="color: var(--accent-blue);">откройте трейлер в новой вкладке</a></p>
+    </div>
+</section>
+        
+    </main>
+    
+    <!-- Футер -->
     <footer>
         <div class="container">
-            <div class="footer-links">
-                <a href="https://www.imdb.com/title/tt0816692/" target="_blank">Страница на IMDb</a>
-                <a href="https://www.warnerbros.com/movies/interstellar" target="_blank">Официальный сайт Warner Bros.</a>
-                <a href="https://www.rottentomatoes.com/m/interstellar_2014" target="_blank">Rotten Tomatoes</a>
-                <a href="https://ru.wikipedia.org/wiki/Интерстеллар" target="_blank">Википедия</a>
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Информация о фильме</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Производственные заметки</a></li>
+                        <li><a href="#">Саундтрек</a></li>
+                        <li><a href="#">Визуальные эффекты</a></li>
+                        <li><a href="#">Научное консультирование</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Ресурсы</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.imdb.com/title/tt0816692/" target="_blank">IMDb</a></li>
+                        <li><a href="https://www.warnerbros.com/movies/interstellar" target="_blank">Warner Bros.</a></li>
+                        <li><a href="https://www.rottentomatoes.com/m/interstellar_2014" target="_blank">Rotten Tomatoes</a></li>
+                        <li><a href="https://ru.wikipedia.org/wiki/Интерстеллар" target="_blank">Википедия</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Создатели</h3>
+                    <ul class="footer-links">
+                        <li>Режиссер: Кристофер Нолан</li>
+                        <li>Сценарий: Джонатан Нолан</li>
+                        <li>Музыка: Ханс Циммер</li>
+                        <li>Оператор: Хойте ван Хойтема</li>
+                    </ul>
+                </div>
             </div>
-            <p class="copyright">© 2014 Interstellar. Все права защищены. Paramount Pictures, Warner Bros. Pictures, Legendary Pictures.</p>
-            <p class="copyright">Этот сайт создан в образовательных целях и не является официальным ресурсом фильма.</p>
+            
+            <div class="copyright">
+                <p>© 2014 ИНТЕРСТЕЛЛАР. Paramount Pictures, Warner Bros. Pictures, Legendary Pictures.</p>
+                <p>Этот сайт создан в образовательных целях и не связан с официальным производством фильма.</p>
+            </div>
         </div>
     </footer>
     
-    <!-- Уведомление -->
-    <div class="notification" id="notification"></div>
-    
     <script>
-        // Создаем SVG placeholder для изображений (вместо placeholder.com)
-        const createPlaceholderSVG = (text = "Фото актера") => {
-            return `data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" width="400" height="600" viewBox="0 0 400 600"><rect width="400" height="600" fill="%232a3c6d"/><text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" fill="white" font-family="Arial, sans-serif" font-size="24">${encodeURIComponent(text)}</text></svg>`;
-        };
+        // Анимация появления секций при скролле
+        const sections = document.querySelectorAll('.section');
         
-        // Исправленные фото актеров с гарантированно работающими ссылками
-        // Все ссылки взяты с Wikipedia и гарантированно работают
-        const defaultActors = [
-            {
-                name: "Мэттью Макконахи",
-                role: "Джозеф Купер",
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Matthew_McConaughey_2019_by_Glenn_Francis.jpg/220px-Matthew_McConaughey_2019_by_Glenn_Francis.jpg"
-            },
-            {
-                name: "Энн Хэтэуэй",
-                role: "Амелия Бренд",
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/Anne_Hathaway_June_2021.jpg/220px-Anne_Hathaway_June_2021.jpg"
-            },
-            {
-                name: "Джессика Честейн",
-                role: "Мёрф Купер (взрослая)",
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Jessica_Chastain_%2836268016636%29.jpg/220px-Jessica_Chastain_%2836268016636%29.jpg"
-            },
-            {
-                name: "Майкл Кейн",
-                role: "Профессор Джон Бренд",
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/eb/Michael_Caine_at_the_2005_Tribeca_Film_Festival_%28cropped%29.jpg/220px-Michael_Caine_at_the_2005_Tribeca_Film_Festival_%28cropped%29.jpg"
-            },
-            {
-                name: "Маккензи Фой",
-                role: "Мёрф Купер (10 лет)",
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5b/Mackenzie_Foy_2014_%28cropped%29.jpg/220px-Mackenzie_Foy_2014_%28cropped%29.jpg"
-            },
-            {
-                name: "Мэтт Дэймон",
-                role: "Доктор Манн",
-                image: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8c/Matt_Damon_Cannes_2019.jpg/220px-Matt_Damon_Cannes_2019.jpg"
-            }
-        ];
-        
-        // Функция для безопасной загрузки изображений
-        const loadImageSafely = (url, altText) => {
-            return new Promise((resolve) => {
-                // Если это уже data URL (SVG), сразу возвращаем
-                if (url.startsWith('data:')) {
-                    resolve(url);
-                    return;
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
                 }
-                
-                const img = new Image();
-                img.onload = () => {
-                    console.log('Изображение успешно загружено:', url);
-                    resolve(url);
-                };
-                img.onerror = () => {
-                    console.warn('Ошибка загрузки изображения, используем SVG:', url);
-                    resolve(createPlaceholderSVG(altText));
-                };
-                img.src = url;
             });
-        };
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        });
         
-        // Функция для отрисовки актеров
-        async function renderActors(actorsArray) {
-            const actorsGrid = document.getElementById('actors-grid');
-            
-            // Очищаем сетку
-            while (actorsGrid.firstChild) {
-                actorsGrid.removeChild(actorsGrid.firstChild);
-            }
-            
-            for (let i = 0; i < actorsArray.length; i++) {
-                const actor = actorsArray[i];
-                const actorElement = document.createElement('div');
-                actorElement.className = 'actor';
-                actorElement.style.animationDelay = `${i * 0.1}s`;
-                
-                // Загружаем изображение безопасно
-                const safeImageUrl = await loadImageSafely(actor.image, actor.name);
-                
-                actorElement.innerHTML = `
-                    <div class="actor-img-container">
-                        <img src="${safeImageUrl}" alt="${actor.name}" class="actor-img">
-                    </div>
-                    <div class="actor-info">
-                        <h3 class="actor-name">${actor.name}</h3>
-                        <p class="actor-role">${actor.role}</p>
-                    </div>
-                `;
-                
-                actorsGrid.appendChild(actorElement);
-            }
-            
-            // Сохраняем актеров в localStorage
-            try {
-                localStorage.setItem('interstellarActors', JSON.stringify(actorsArray));
-            } catch (e) {
-                console.warn('Не удалось сохранить в localStorage:', e);
-            }
-            
-            // Анимируем появление актеров
-            animateActors();
-        }
+        sections.forEach(section => {
+            observer.observe(section);
+        });
         
-        // Функция для анимации актеров
-        function animateActors() {
-            const actors = document.querySelectorAll('.actor');
-            actors.forEach((actor, index) => {
-                setTimeout(() => {
-                    actor.style.opacity = '1';
-                    actor.style.transform = 'translateY(0)';
-                }, index * 100);
-            });
-        }
-        
-        // Функция для добавления нового актера
-        async function addActor() {
-            const nameInput = document.getElementById('actor-name');
-            const roleInput = document.getElementById('actor-role');
-            const imageInput = document.getElementById('image-url');
-            
-            const name = nameInput.value.trim();
-            const role = roleInput.value.trim();
-            const image = imageInput.value.trim();
-            
-            if (!name || !role) {
-                showNotification('Пожалуйста, заполните имя и роль актера', 'error');
-                return;
-            }
-            
-            // Если URL изображения не указан, используем SVG placeholder
-            const imageUrl = image || createPlaceholderSVG(name);
-            
-            // Загружаем текущий список актеров
-            let actors = [];
-            try {
-                const saved = localStorage.getItem('interstellarActors');
-                actors = saved ? JSON.parse(saved) : defaultActors;
-            } catch (e) {
-                console.warn('Ошибка загрузки из localStorage:', e);
-                actors = defaultActors;
-            }
-            
-            // Добавляем нового актера
-            actors.push({ name, role, image: imageUrl });
-            
-            // Отрисовываем обновленный список
-            await renderActors(actors);
-            
-            // Очищаем поля ввода
-            nameInput.value = '';
-            roleInput.value = '';
-            imageInput.value = '';
-            
-            // Показываем уведомление
-            showNotification(`Актер ${name} успешно добавлен!`, 'success');
-            
-            // Прокручиваем к новому актеру
-            setTimeout(() => {
-                const actorsGrid = document.querySelector('.cast-grid');
-                if (actorsGrid) {
-                    actorsGrid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // Плавная прокрутка для навигации
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Обновляем активную ссылку
+                    document.querySelectorAll('nav a').forEach(a => {
+                        a.style.color = '';
+                    });
+                    this.style.color = 'var(--star-light)';
                 }
-            }, 100);
-        }
+            });
+        });
         
-        // Функция для очистки всех актеров
-        function clearAllActors() {
-            if (confirm('Вы уверены, что хотите удалить всех актеров?')) {
-                renderActors([]);
-                showNotification('Все актеры удалены', 'info');
-            }
-        }
-        
-        // Функция для загрузки актеров по умолчанию
-        function loadDefaultActors() {
-            renderActors(defaultActors);
-            showNotification('Стандартные фото загружены', 'success');
-        }
-        
-        // Функция для показа уведомлений
-        function showNotification(message, type = 'info') {
-            const notification = document.getElementById('notification');
-            notification.textContent = message;
+        // Случайное мерцание звезд
+        function twinkleStars() {
+            const starField = document.querySelector('.star-field');
+            const computedStyle = window.getComputedStyle(starField);
+            const currentOpacity = parseFloat(computedStyle.opacity);
             
-            // Устанавливаем цвет в зависимости от типа
-            if (type === 'error') {
-                notification.style.background = '#e74c3c';
-            } else if (type === 'success') {
-                notification.style.background = '#2ecc71';
-            } else {
-                notification.style.background = '#4a6fe3';
-            }
+            // Случайное изменение прозрачности для эффекта мерцания
+            const newOpacity = currentOpacity + (Math.random() * 0.1 - 0.05);
+            const clampedOpacity = Math.max(0.7, Math.min(1, newOpacity));
             
-            // Показываем уведомление
-            notification.classList.add('show');
+            starField.style.opacity = clampedOpacity;
             
-            // Скрываем через 3 секунды
-            setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
+            setTimeout(twinkleStars, Math.random() * 1000 + 500);
         }
         
-        // Функция для встроенного VK Video проигрывателя
+        // VK Video плеер
         function initVKVideoPlayer() {
-            const vkVideoContainer = document.getElementById('vk-video-container');
-            const vkVideoFrame = document.getElementById('vk-video-frame');
             const videoPlaceholder = document.getElementById('video-placeholder');
-            const playBtn = videoPlaceholder.querySelector('.play-btn');
-            const reloadBtn = document.getElementById('reload-video');
+            const vkVideoFrame = document.getElementById('vk-video-frame');
+            const vkLoading = document.getElementById('vk-loading');
+            const reloadButton = document.getElementById('reload-video');
             
-            // Ссылка на видео в VK (используем embed версию)
-            const vkVideoUrl = "https://vk.com/video_ext.php?oid=-36455846&id=456241407";
+            // ID видео из VK (пример - официальный трейлер Интерстеллар)
+            // Можно заменить на любой другой ID видео из VK
+            const vkVideoOid = '-36455846'; // ID владельца видео
+            const vkVideoId = '456241407'; // ID самого видео
             
-            // При клике на плейсхолдер
-            videoPlaceholder.addEventListener('click', function() {
-                loadVKVideo();
-            });
+            // Функция загрузки видео
+            function loadVKVideo() {
+                // Показываем экран загрузки
+                vkLoading.classList.add('active');
+                
+                // Скрываем плейсхолдер
+                videoPlaceholder.classList.add('hidden');
+                
+                // Формируем ссылку на видео
+                const vkVideoUrl = `https://vkvideo.ru/video-36455846_456241407`;
+                
+                // Устанавливаем источник для iframe
+                vkVideoFrame.src = vkVideoUrl;
+                
+                // После загрузки скрываем экран загрузки
+                vkVideoFrame.onload = () => {
+                    setTimeout(() => {
+                        vkLoading.classList.remove('active');
+                    }, 1000);
+                };
+                
+                // Обработка ошибок
+                vkVideoFrame.onerror = () => {
+                    vkLoading.classList.remove('active');
+                    videoPlaceholder.classList.remove('hidden');
+                    alert('Не удалось загрузить видео. Проверьте подключение к интернету или попробуйте позже.');
+                };
+            }
             
-            // При клике на кнопку воспроизведения
-            playBtn.addEventListener('click', function(e) {
+            // Загрузка видео по клику на плейсхолдер
+            videoPlaceholder.addEventListener('click', loadVKVideo);
+            
+            // Загрузка видео по клику на кнопку воспроизведения
+            videoPlaceholder.querySelector('.play-button').addEventListener('click', (e) => {
                 e.stopPropagation();
                 loadVKVideo();
             });
             
-            // При клике на кнопку перезагрузки
-            reloadBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                loadVKVideo();
-                showNotification('Плеер перезагружается...', 'info');
+            // Кнопка перезагрузки видео
+            reloadButton.addEventListener('click', () => {
+                // Сбрасываем iframe
+                vkVideoFrame.src = '';
+                
+                // Показываем плейсхолдер
+                videoPlaceholder.classList.remove('hidden');
+                
+                // Показываем сообщение
+                alert('Плеер перезагружен. Нажмите на кнопку воспроизведения для загрузки видео.');
             });
             
-            // Функция загрузки VK видео
-            function loadVKVideo() {
-                try {
-                    // Скрываем плейсхолдер
-                    videoPlaceholder.style.display = 'none';
-                    
-                    // Показываем контейнер с видео
-                    vkVideoContainer.style.display = 'block';
-                    
-                    // Устанавливаем источник видео
-                    vkVideoFrame.src = vkVideoUrl;
-                    
-                    // Фокусируемся на плеере
-                    vkVideoFrame.focus();
-                    
-                    showNotification('Трейлер загружается...', 'info');
-                } catch (error) {
-                    console.error('Ошибка загрузки видео:', error);
-                    showNotification('Ошибка загрузки видео', 'error');
-                    // Возвращаем плейсхолдер
-                    videoPlaceholder.style.display = 'block';
-                    vkVideoContainer.style.display = 'none';
-                }
-            }
+            // Автоматическая загрузка видео при прокрутке к секции
+            const trailerSection = document.getElementById('trailer');
+            const trailerObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !vkVideoFrame.src) {
+                        // Автоматически загружаем видео при попадании в зону видимости
+                        // Раскомментируйте следующую строку, если хотите автозагрузку:
+                        // loadVKVideo();
+                    }
+                });
+            }, { threshold: 0.5 });
             
-            // Экспортируем функцию для перезагрузки
-            window.loadVKVideo = loadVKVideo;
+            trailerObserver.observe(trailerSection);
+        }
+        
+        // Эффект параллакса для черной дыры при движении мыши
+        function initParallaxEffect() {
+            const blackHole = document.querySelector('.black-hole-background');
+            const accretionDisk = document.querySelector('.accretion-disk');
+            
+            document.addEventListener('mousemove', (e) => {
+                const x = e.clientX / window.innerWidth;
+                const y = e.clientY / window.innerHeight;
+                
+                // Параллакс эффект для черной дыры
+                if (blackHole) {
+                    blackHole.style.transform = `translate(calc(-50% + ${(x - 0.5) * 50}px), calc(-50% + ${(y - 0.5) * 50}px))`;
+                }
+                
+                // Изменение скорости вращения аккреционного диска
+                if (accretionDisk) {
+                    const speed = 0.5 + y * 0.5;
+                    accretionDisk.style.animationDuration = `${40 / speed}s`;
+                }
+            });
         }
         
         // Инициализация при загрузке страницы
-        document.addEventListener('DOMContentLoaded', async function() {
-            // Загружаем актеров из localStorage или используем стандартных
-            let savedActors = [];
-            try {
-                const saved = localStorage.getItem('interstellarActors');
-                savedActors = saved ? JSON.parse(saved) : null;
-            } catch (e) {
-                console.warn('Ошибка загрузки актеров из localStorage:', e);
-                savedActors = null;
-            }
+        document.addEventListener('DOMContentLoaded', () => {
+            // Запускаем мерцание звезд
+            setTimeout(twinkleStars, 1000);
             
-            if (savedActors && savedActors.length > 0) {
-                await renderActors(savedActors);
-            } else {
-                await renderActors(defaultActors);
-            }
+            // Показываем первую секцию сразу
+            document.querySelector('#about').classList.add('visible');
             
             // Инициализируем VK Video плеер
             initVKVideoPlayer();
             
-            // Назначаем обработчики событий
-            document.getElementById('add-actor').addEventListener('click', addActor);
-            document.getElementById('clear-all').addEventListener('click', clearAllActors);
-            document.getElementById('load-default').addEventListener('click', loadDefaultActors);
+            // Инициализируем параллакс эффект
+            initParallaxEffect();
             
-            // Плавная прокрутка для навигации
-            document.querySelectorAll('nav a').forEach(anchor => {
-                anchor.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    
-                    const targetId = this.getAttribute('href');
-                    const targetElement = document.querySelector(targetId);
-                    
-                    if (targetElement) {
-                        window.scrollTo({
-                            top: targetElement.offsetTop - 80,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
-            });
+            // Эффект печатания для заголовка
+            const title = document.querySelector('.film-title');
+            const originalText = title.textContent;
+            title.textContent = '';
             
-            // Подсветка текущего раздела при прокрутке
-            window.addEventListener('scroll', function() {
-                const sections = document.querySelectorAll('section, .hero');
-                const navLinks = document.querySelectorAll('nav a');
-                
-                let currentSectionId = '';
-                
-                sections.forEach(section => {
-                    const sectionTop = section.offsetTop - 100;
-                    const sectionHeight = section.clientHeight;
-                    
-                    if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                        currentSectionId = '#' + section.getAttribute('id');
-                    }
-                });
-                
-                navLinks.forEach(link => {
-                    link.style.color = '#b0c0ff';
-                    if (link.getAttribute('href') === currentSectionId) {
-                        link.style.color = '#4a6fe3';
-                        link.style.fontWeight = '700';
-                    } else {
-                        link.style.fontWeight = '600';
-                    }
-                });
-            });
-            
-            // Анимация появления элементов при скролле
-            const observerOptions = {
-                threshold: 0.1,
-                rootMargin: '0px 0px -100px 0px'
-            };
-            
-            const observer = new IntersectionObserver(function(entries) {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('animate__animated', 'animate__fadeInUp');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-            
-            // Назначаем анимацию для элементов
-            document.querySelectorAll('.spec-item, .fact-card, .award-item, .cast-controls, .synopsis p').forEach(el => {
-                el.style.opacity = '0';
-                observer.observe(el);
-            });
-            
-            // Анимация для заголовков
-            document.querySelectorAll('.section-title').forEach((title, index) => {
-                setTimeout(() => {
-                    title.style.opacity = '1';
-                    title.style.transform = 'translateY(0)';
-                }, index * 200);
-            });
-        });
-        
-        // Добавляем возможность добавления актера по нажатию Enter в полях ввода
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Enter' && (e.target.id === 'actor-name' || e.target.id === 'actor-role' || e.target.id === 'image-url')) {
-                addActor();
+            let i = 0;
+            function typeWriter() {
+                if (i < originalText.length) {
+                    title.textContent += originalText.charAt(i);
+                    i++;
+                    setTimeout(typeWriter, 100);
+                }
             }
+            
+            setTimeout(typeWriter, 500);
+            
+            // Динамическое изменение черной дыры при скролле
+            window.addEventListener('scroll', () => {
+                const scrollY = window.scrollY;
+                const blackHole = document.querySelector('.black-hole-background');
+                const accretionDisk = document.querySelector('.accretion-disk');
+                
+                if (blackHole && accretionDisk) {
+                    // Изменение размера и прозрачности черной дыры при скролле
+                    const scale = 1 - scrollY * 0.0002;
+                    const opacity = 0.8 - scrollY * 0.0005;
+                    
+                    blackHole.style.transform = `translate(-50%, -50%) scale(${Math.max(0.5, scale)})`;
+                    accretionDisk.style.opacity = Math.max(0.1, opacity);
+                }
+            });
+            
+            // Консольное сообщение для фанатов
+            console.log('%c🚀 ИНТЕРСТЕЛЛАР — Человечество родилось на Земле, но не было предназначено умереть здесь.', 'color: #1a5fb4; font-size: 14px; font-weight: bold;');
+            console.log('%c"Путешествие за пределы звезд, сквозь время и пространство."', 'color: #c7a53b; font-size: 12px;');
+            console.log('%cVK Video плеер готов к работе. Нажмите на кнопку воспроизведения для просмотра трейлера.', 'color: #4CAF50; font-size: 12px;');
         });
     </script>
 </body>
